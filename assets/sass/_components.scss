@@ -1,0 +1,124 @@
+@use 'utils' as u;
+@use 'mixin' as m;
+
+@mixin btnBase{
+  padding : 1.5rem 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family:'Inter', sans-serif;
+
+  background-color: u.$colorBtn;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+}
+
+
+.cta{
+  @include btnBase();
+
+  &:hover{
+    border: 1px solid u.$colorBtn;
+    background-color: transparent;
+    color: #3d3d3d;
+  }
+
+  &-m{
+    color: u.$paragraph;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding : 1.5rem ;
+    cursor: pointer;
+
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+
+.card{
+  
+  @include m.flex(column);
+  align-items: flex-start;
+
+  small{
+    color: #1a36b6be;
+    font-weight: 700;
+  }
+  
+  h2{
+    color: u.$paragraph;  
+    font-size: 2.9rem;
+  }
+  .paragraph{
+    line-height: 1.45;
+  }
+
+
+}
+
+
+
+.card__pricing{
+  max-width: 38rem;
+  border : 1px solid #ccc;
+  padding: 3.5rem;
+  border-radius: 0.5rem;
+  @include m.flex(column,3.5rem);
+
+  .price{
+    width: 100%;
+    h2{
+      color: #000;
+      margin-bottom: 1.5rem;
+
+      span{
+        color: u.$paragraph;
+        font-weight: 300;
+        font-size: 1.5rem;
+        opacity: .6;
+      }
+
+    }
+   
+  }
+
+  hr{
+    width: 100%;
+    color: #eee;
+    font-weight: 300;
+  }
+
+
+  .options{ 
+    width: 100%;
+    @include m.flex(column);  
+    align-items: flex-start;
+
+    .option{
+      @include m.flex(row,1.5rem);
+
+    }
+  }
+
+  .actions{
+    width: 100%;
+
+    .cta{
+      width: 100%;
+    }
+  }
+
+
+  @media screen and (min-width:600px){
+    padding: 2rem;
+    
+  }
+
+
+}

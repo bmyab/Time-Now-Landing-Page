@@ -1,0 +1,341 @@
+@use 'mixin' as m;
+@use 'utils' as u;
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-size: 1.6rem;
+  font-family:'Inter', sans-serif;
+  color: u.$paragraph ;
+}
+
+li{
+  list-style: none;
+  a{
+    text-decoration: none;
+    color: u.$paragraph ;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.title{
+  font-size: 3.2rem;
+  color: u.$colorBtn;
+
+  &-m{
+    font-size:4.5rem;
+    width: 80%;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    color: #000;
+    text-align: center;
+  }
+}
+.error{
+  opacity: 0;
+}
+.light{
+  font-weight: 300;
+}
+.bold{
+  font-weight: 700;
+}
+.none{
+  opacity: 0;
+}
+// MENU
+
+
+
+// HEADER
+.header{
+  padding-block: 1rem;
+  padding-inline: 5%;
+  max-width: 140rem;
+  margin-inline: auto;
+
+  @include m.flex();
+  justify-content: space-between;
+
+  .menu__logo{
+    width: 22px;
+    height: 22px;
+    background-image: url('../svg/Hamburger\ Menu.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .navbar{
+    display: none;
+  }
+  
+  .header__cta{
+    display: none;
+  }
+  .menu-checkbox{
+    display: none;
+  }
+  .menu-checkbox:checked ~ .menu__logo{
+    background-image: url('../svg/xmark-solid.svg');
+    background-size: cover;
+  }
+  .menu-checkbox:checked ~ .navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    z-index: 100;
+    
+    background-color: white;
+
+  }
+  .menu-checkbox:checked ~ .navbar .navbar__items{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+
+}
+
+// HERO
+.hero{
+  padding-block: 2.5rem;
+  max-width: 130rem;
+  margin-inline: auto;
+  
+
+  &__post{  
+
+    display: grid;
+    row-gap: 4.5rem;
+
+    .content{
+      padding-inline: 5%; 
+      @include m.flex(column , 2.5rem);
+      align-items: flex-start;
+
+      &__actions{
+        width: 100%;
+        @include m.flex();
+        justify-content: space-between;
+      }
+
+      &__footer{
+        @include m.flex($gap:2rem);
+        font-size: 1.7rem;
+        width: 85%;
+
+        small{
+
+          a{
+            font-weight: 700;
+            color:u.$paragraph;
+            transition: all 0.2s;
+            &:hover{
+              letter-spacing: 1px;
+            }
+          }
+        }
+      }
+
+    }
+
+    .bg{
+      width: 100%;
+      background-color:u.$colorHeroBg;
+      padding: 3.5rem;
+
+      img{
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+}
+
+// MAIN
+.main{
+  // TimeNow
+  .timenow{
+    max-width: 130rem;
+    margin-inline: auto;
+    padding-inline: 5%;
+    padding-block: 4rem;
+    @include m.flex(column , 3rem);
+
+    .people{
+      @include m.flex();
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      img{
+        max-width: 12.5%;
+      }
+    }
+  }
+
+  // Cards
+  .cards{
+    max-width: 130rem;
+    margin-inline:auto ;
+    padding-inline: 5%;
+    padding-block: 4rem;
+    background-color: u.$colorBG;
+
+    display: grid;
+    row-gap: 4.5rem;
+  }
+}
+
+
+// FOOTER
+.footer{
+  max-width: 130rem;
+  margin-inline: auto;
+  padding-block: 2rem;
+  padding-inline: 5%;
+
+  &__navbar{
+    padding-top: 2rem;
+    @include m.flex();
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .navbar__items{
+      width: 48%;
+      @include m.flex(column);
+      align-items: flex-start;
+
+
+      h3{
+        color: #000;
+        font-size: 1.75rem;
+      }
+
+      li{
+        cursor: pointer;
+
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+
+      &:nth-child(3){
+        margin-block: 2rem;
+      }
+    }
+  
+  }
+
+  &__form{
+    
+    h3{
+      color: #000;
+      padding-bottom: 1.5rem;
+      font-size: 1.75rem;
+    }
+    
+
+    .form__input{
+
+      position: relative;
+      input{
+        border : 1px solid #bbb;
+        border-radius: 0.45rem;
+        width: 100%;
+        padding: 2rem;
+      }
+
+      .cta{
+        position: absolute;
+        top: 4px;
+        right: 4px;
+      }
+
+      small{
+        color: red;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+
+
+
+// PRICING
+.pricing{
+  padding-inline: 5%;
+  margin-block: 2rem;
+  text-align: center;
+  @include m.flex(column,2rem);
+
+
+  &__toogle{
+    @include m.flex();
+
+    .toogle{
+      border: none;
+      padding-inline: 0.5rem;
+      border-radius: 5rem;
+      background-color: u.$colorHeroBg;
+      width: 50px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      
+
+      .circle{
+        background-color: #fff;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        transform: translateX(20px);
+        transition: all 0.2s ease;
+
+      }
+    }
+    .checkbox{
+      display: none;
+    }
+    .checkbox:checked ~ .toogle{
+      background-color: u.$colorBtn;
+    }
+    .checkbox:checked ~ .toogle .circle{
+      transform: translateX(0px);
+    }
+
+  }
+}
+
+// CARDS
+.cards__pricing{
+  padding-block: 4rem;
+  padding-inline: 5%;
+  display: grid;
+  justify-content: center;
+  row-gap: 2.5rem;
+}

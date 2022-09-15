@@ -1,0 +1,269 @@
+$breakpoints: (
+  mobile: 800px,
+  tablet: 1024px,
+  laptop: 1240px,
+  desktop-lg: 1800px
+);
+
+@mixin breakpoint($breakpoint, $direction) {
+
+  // Get the breakpoint value.
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+  
+  @if $direction == min {
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+} 
+
+//Mobile
+.header{
+  @include breakpoint(mobile,min ){
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas: 
+    'uno dos tres tres';
+
+    .menu__logo{
+      display: none;
+    }
+
+    .navbar{
+      display: flex;
+      
+      .navbar__items{
+        display: flex;
+        gap: 4rem;
+
+      }
+    }
+    
+    .header__cta{
+      display: block;
+      grid-area: tres;
+      justify-self: center;
+    }
+  }
+}
+
+.hero{
+  @include breakpoint(mobile,min ){
+
+    &__post{
+      .content{
+        
+        &__actions{
+          justify-content: space-around;
+        }
+      }
+    }
+
+    .bg{
+
+      padding: 4.5rem;
+
+      img{
+        max-width: 80%;
+        margin-inline: auto;
+      }
+    }
+  }
+}
+
+.footer{
+  @include breakpoint(mobile,min ){
+
+    &__navbar{
+
+      .navbar__items{
+        width: 30%;
+
+        &:nth-child(3){
+          margin-block: 0;
+        }
+      }
+    }
+
+
+
+    &__form{
+      padding-top: 4rem;
+      max-width: 55rem;
+    }
+  }
+}
+
+
+// price
+.pricing{
+  @include breakpoint(mobile,min ){
+    padding-block: 5rem;
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+}
+.cards__pricing{
+  
+  @include breakpoint(mobile,min ){
+    max-width: 80rem;
+    margin-inline: auto;
+    grid-template-columns: repeat(2 , 1fr);
+    grid-template-rows: repeat(2 , max-content);
+    grid-template-areas: 
+    'card1  card2 '
+    'card3  card3';
+
+    column-gap: 5rem;
+
+    .c-1{
+      grid-area: card1;
+    }
+    .c-2{
+      grid-area: card2;
+    }
+    .c-3{
+      grid-area: card3;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+// Tablet
+
+.header{
+  @include breakpoint(tablet,min ){
+
+
+  }
+}
+
+.hero{
+  @include breakpoint(tablet,min ){
+    margin-block: 14.5rem;
+    &__post{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+
+      .content{
+        max-width: 55rem;
+        .title{
+          font-size: 4.5rem;
+        }
+
+        &__actions{
+          justify-content: flex-start;
+        }
+
+
+        &__footer{
+          width: auto;
+        }
+      }
+    }
+
+    &__bg{
+      img{
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+.main{
+  @include breakpoint(tablet,min){
+    .timenow{
+      margin-block: 7rem;
+      .people{
+        justify-content: center;
+        img{
+          max-width: 11%;
+        }
+      }
+    }
+
+
+    .cards{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      column-gap: 18rem;
+      padding-block: 10rem;
+    }
+  }
+}
+
+
+// laptop
+.main{
+  @include breakpoint(laptop, min){
+    .timenow{
+      display:grid;
+      grid-template-columns: repeat(2,1fr);
+      grid-template-rows: repeat(2,1fr);
+      grid-template-areas: 
+      'title data1'
+      'images data2';
+      
+      .people{
+        grid-area: images;
+        justify-content: flex-start;
+
+        img{
+          max-width: 9%;
+        }
+      }
+      .title{
+        grid-area: title;
+      }
+      .d-1{
+       grid-area: data1;
+      }
+    
+    }
+  }
+}
+
+.footer{
+  @include breakpoint(laptop,min ){
+    padding-block: 5rem;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+
+    &__navbar{
+      grid-column: 1/2;
+    }
+
+    &__form{
+      padding-top: 0;
+      align-self: center;
+    }
+  }
+}
+
+
+.pricing{
+  @include breakpoint(laptop,min ){
+    max-width: 95rem;
+  }
+}
+
+.cards__pricing{
+  @include breakpoint(laptop,min ){
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 1fr;
+    max-width: 130rem;
+    padding-block: 8rem;
+    
+
+    .c-3{
+      grid-column: 3/4;
+      grid-row: 1/2;
+      height: 85%;
+    }
+    .c-1{
+      height: 95%;
+    }
+  }
+}
